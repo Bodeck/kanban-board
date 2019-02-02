@@ -1,6 +1,6 @@
 'use strict'
-// document.addEventListener('DOMContentLoaded', () => {
-var baseUrl = 'https://kodilla.com/pl/bootcamp-api';
+var prefix = 'https://cors-anywhere.herokuapp.com/'
+var baseUrl = prefix + 'https://kodilla.com/pl/bootcamp-api';
 var myHeaders = {
     'X-Client-Id': '3607',
     'X-Auth-Token': '436acdcb35d10a21433857565d2eb47f'
