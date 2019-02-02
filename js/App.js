@@ -2,11 +2,11 @@
 var prefix = 'https://cors-anywhere.herokuapp.com/'
 var baseUrl = prefix + 'https://kodilla.com/pl/bootcamp-api';
 var myHeaders = {
-    'X-Client-Id': '3607',
+    'X-Client-Id': 3607,
     'X-Auth-Token': '436acdcb35d10a21433857565d2eb47f'
 }
 
-fetch(baseUrl + '/board', myHeaders)
+fetch(baseUrl + '/board', {method: 'GET', headers: myHeaders})
     .then(function (resp) {
         return resp.json();
     })
@@ -18,7 +18,7 @@ function setUpColumns(columns) {
     columns.forEach(function (column) {
         var col = new Column(column.id, column.name);
         board.addColumn(col);
-        setUpCards(col, columns.cards);
+        setUpCards(col, column.cards);
     });
 }
 
