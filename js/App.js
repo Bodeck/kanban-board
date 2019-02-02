@@ -1,31 +1,40 @@
 'use strict'
 // document.addEventListener('DOMContentLoaded', () => {
-    function randomString(length = 10) {
-        var chars = '0123456789abcdefghiklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXTZ';
-        var str = '';
-        for (let i = 0; i < length; i++) {
-            str += chars[Math.floor(Math.random() * chars.length)];
-        }
-        return str;
-    }
+var baseUrl = 'https://kodilla.com/pl/bootcamp-api';
+var myHeaders = {
+    'X-Client-Id': '3607',
+    'X-Auth-Token': '436acdcb35d10a21433857565d2eb47f'
+}
 
-    function generateTemplate(name, data, basicElement) {
-        var template = document.getElementById(name).innerHTML;
-        var element = document.createElement(basicElement || 'div');
-        Mustache.parse(template);
-        element.innerHTML = Mustache.render(template, data);
+fetch(baseUrl + '/board', myHeaders)
+    .then(function (resp) {
+        return resp.json();
+    })
+    .then(function (resp) {
+        setUpColumns(resp.columns);
+    });
 
-        return element;
-    }
+function setUpColumns(columns) {
+    columns.forEach(function (column) {
+        var col = new Column(column.id, column.name);
+        board.addColumn(col);
+        setUpCards(col, columns.cards);
+    });
+}
 
-    var todoColumn = new Column('To do');
-    var doingColumn = new Column('Doing');
-    var doneColumn = new Column('Done');
-    board.addColumn(todoColumn);
-    board.addColumn(doingColumn);
-    board.addColumn(doneColumn);
-    var card1 = new Card('New task');
-    var card2 = new Card('Create kanban boards');
-    todoColumn.addCard(card1);
-    doingColumn.addCard(card2);
-// })
+function setUpCards(col, cards) {
+    cards.forEach(function (card) {
+        var cardObj = new Card(card.id, card.name);
+        col.addCard(cardObj);
+    })
+}
+
+function generateTemplate(name, data, basicElement) {
+    var template = document.getElementById(name).innerHTML;
+    var element = document.createElement(basicElement || 'div');
+    Mustache.parse(template);
+    element.innerHTML = Mustache.render(template, data);
+
+    return element;
+}
+

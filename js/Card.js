@@ -1,8 +1,8 @@
-function Card(description) {
+function Card(id, name) {
     var self = this;
-    this.description = description;
-    this.id = randomString();
-    this.element = generateTemplate('card-template', { description: this.description }, 'li');
+    this.name = name||'No name given';
+    this.id = id;
+    this.element = generateTemplate('card-template', { description: this.name }, 'li');
     this.element.querySelector('.card').addEventListener('click', function(event){
         event.stopPropagation();
         if (event.target.classList.contains('btn-delete')) {
@@ -13,6 +13,13 @@ function Card(description) {
 
 Card.prototype = {
     removeCard: function () {
-        this.element.parentNode.removeChild(this.element);
+        var self = this;
+        fetch(baseUrl + '/card'+ self.id, {method: 'DELETE', myHeaders})
+        .then(function(resp) {
+            return resp.json();
+        })
+        .then(function(resp) {
+            self.element.parentNode.removeChild(self.element);
+        })
     }
 }
