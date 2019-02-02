@@ -1,0 +1,74 @@
+body {
+    background-image: url('../images/background-img.jpg');
+    background-size: cover;
+    height: 100vh;
+}
+.board {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 10px;
+    font-family: Arial, Helvetica, sans-serif;
+    h1 {
+        color: white;
+        background-color: rgba(0,0,0,.4);
+        margin-top: 0;
+        padding: 10px;
+    }
+    .column-container {
+        min-width: 200px;
+        padding: 10px;
+        display: flex;
+    }
+    .column {
+
+        background-color: lightgrey;
+        box-shadow: .1px .1px 5px rgba(0,0,0,.7);
+        border-radius: 5px;
+        margin: 1px 5px;
+        min-width: 200px;
+        padding: 5px 10px;
+        h2 {
+            text-align: center;
+            padding: 0;
+            margin: 0;
+            text-transform: capitalize;
+        }
+        .column-card-list {
+            list-style-type: none;
+            padding:0;
+            min-height: 10px;
+        }
+        .card {
+            background-color: white;
+            border-radius: 3px;
+            box-shadow: 0px 1px 1px 0px rgba(31,29,31,1);
+            cursor: pointer;
+            margin: 10px auto;
+            .card-description {
+                padding: 5px;
+            }
+            &:hover > .btn-delete {
+                opacity: 1;
+            }
+            .btn-delete {
+                opacity: 0;
+                background-color: transparent;
+                border: none;
+                border-radius: 50%;
+                float: right;
+                padding: 0 4px;
+                &:hover{
+                    background-color: darkgrey;
+                }
+            }
+        }
+    }
+    button {
+        border-radius: 2px;
+        padding: 2px 10px;
+        border: none;
+        cursor: pointer;
+
+    }
+}
