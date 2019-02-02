@@ -1,5 +1,5 @@
 'use strict'
-document.addEventListener('DOMContentLoaded', () => {
+// document.addEventListener('DOMContentLoaded', () => {
     function randomString(length = 10) {
         var chars = '0123456789abcdefghiklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXTZ';
         var str = '';
@@ -18,7 +18,6 @@ document.addEventListener('DOMContentLoaded', () => {
         return element;
     }
 
-
     var todoColumn = new Column('To do');
     var doingColumn = new Column('Doing');
     var doneColumn = new Column('Done');
@@ -29,4 +28,4 @@ document.addEventListener('DOMContentLoaded', () => {
     var card2 = new Card('Create kanban boards');
     todoColumn.addCard(card1);
     doingColumn.addCard(card2);
-})
+// })
