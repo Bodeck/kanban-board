@@ -36,6 +36,9 @@ Card.prototype = {
             body: data,
             headers: myHeaders
         })
+        .then(function(resp){
+            resp.json();
+        })
         .then(function(resp) {
             self.element.querySelector('.card-description').innerText = newName;
         })
